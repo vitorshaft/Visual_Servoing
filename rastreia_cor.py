@@ -36,9 +36,9 @@ while True:
     cv2.line(frame, (x_medium, 0), (x_medium, 480), (0, 255, 0), 2)
     # Move servo motor
     if x_medium < center -30:
-        position += 1
+        position += 2
     elif x_medium > center + 30:
-        position -= 1
+        position -= 2
     pos = str(position)+' '
     drimbot.write(bytes(pos, 'utf-8'))
 
