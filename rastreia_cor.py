@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 import serial
-drimbot = serial.Serial(port='COM7', baudrate=9600)
+drimbot = serial.Serial(port='COM6', baudrate=9600)
 
 #cap = cv2.VideoCapture(0)  #para usar a webcam principal do seu PC
 cap = cv2.VideoCapture(1)
@@ -23,8 +23,8 @@ posicao = 90 # degrees          #valor inicial do motor do robo
 while True:
     _, frame = cap.read()
     #cor cinza-escuro
-    menor = 3
-    maior = 20
+    menor = 20
+    maior = 35
     low_cinza = np.array([menor,menor,menor])    #menor RGB possivel
     high_cinza = np.array([maior,maior,maior])   #maior RGB possivel
     cinza_mask = cv2.inRange(frame,low_cinza,high_cinza)    #cria intervalo de cores (mascara)
@@ -55,7 +55,7 @@ while True:
         posicao = 2
     pos = str(posicao)+' '
     drimbot.write(bytes(pos, 'utf-8'))
-
+    '''
     # Move servo motor
     if y_medio < centroY -20:
         #posicao += 2
@@ -65,7 +65,7 @@ while True:
         posicao = 4
     pos = str(posicao)+' '
     drimbot.write(bytes(pos, 'utf-8'))
-    
+    '''
     cv2.imshow("Frame", frame)
     key = cv2.waitKey(1)
     
